@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 90%22%3E%3Cpath fill=%22%23C21F2E%22 d=%22M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z%22/%3E%3C/svg%3E">
+<script src="config.js"></script>
+</head>
+<body>
+<title>Monaal & Riddhi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Caveat:wght@500;700&family=Special+Elite&display=swap">
+<style>
+/* Layout: one screen at a time, like a little storybook you tap through. Crimson + cream, Canva-anniversary feel. */
+:root{
+  --crimson:#9B1829; --crimson-d:#7A0F1F; --cream:#F1DFD4; --paper:#FBF3EA;
+  --blush:#F6C9D1; --pink:#F4AFC0; --gold:#E9B949; --ink:#5A0C17; --white:#FFFFFF;
+  --night:#0D1B3E; --muted:#B98A90;
+  --f-ui:"Fredoka", "Trebuchet MS", system-ui, sans-serif;
+  --f-serif:"Playfair Display", Georgia, "Times New Roman", serif;
+  --f-hand:"Caveat", "Segoe Print", "Comic Sans MS", cursive;
+  --f-type:"Special Elite", "Courier New", monospace;
+  --heart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath d='M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z'/%3E%3C/svg%3E");
+  --hearts-bg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='%23D9232F'%3E%3Cpath transform='translate(8 8) scale(.16)' d='M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z'/%3E%3Cpath transform='translate(40 40) scale(.16)' d='M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z'/%3E%3C/g%3E%3C/svg%3E");
+  --stars-bg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23B5262F'%3E%3Cpath transform='translate(12 10) rotate(-12)' d='M14 0l4.2 9.4 10.2 1-7.7 6.9 2.3 10L14 22.2 5 27.3l2.3-10L-.4 10.4l10.2-1z'/%3E%3Cpath transform='translate(72 64) rotate(14)' d='M14 0l4.2 9.4 10.2 1-7.7 6.9 2.3 10L14 22.2 5 27.3l2.3-10L-.4 10.4l10.2-1z'/%3E%3C/g%3E%3C/svg%3E");
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--crimson);color:var(--white);font-family:var(--f-ui);overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--crimson-d)}
+button{font-family:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+img{max-width:100%;display:block}
+/* keep Riddhi in frame when a selfie is cropped */
+img[src$="pink-selfie.jpg"]{object-position:15% 30%}
+img[src$="bangles.jpg"]{object-position:30% 20%}
+img[src$="cinema.jpg"]{object-position:8% 40%}
+img[src$="street.jpg"]{object-position:12% 35%}
+img[src$="dandiya-selfie.jpg"]{object-position:92% 35%}
+img[src$="lights-selfie.jpg"]{object-position:96% 40%}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:44px;display:flex;align-items:center;justify-content:space-between;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  background:var(--crimson-d);border-bottom:1px solid rgba(255,255,255,.35)}
+.bar .names{font-family:var(--f-hand);font-size:22px;font-weight:700;letter-spacing:.5px}
+.bar .tools{display:flex;gap:8px;align-items:center}
+.iconbtn{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:var(--white);font-size:17px;display:grid;place-items:center}
+.iconbtn[aria-pressed="true"]{background:var(--cream);color:var(--crimson)}
+.menu{position:fixed;top:calc(44px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));z-index:55;background:var(--paper);color:var(--ink);border-radius:18px;padding:10px;min-width:220px;box-shadow:0 14px 40px rgba(60,0,10,.35);display:grid;gap:2px}
+.menu button{border:0;background:none;text-align:left;padding:10px 12px;border-radius:12px;font-size:16px;font-weight:600;color:var(--ink)}
+.menu button:hover{background:var(--blush)}
+
+/* screens */
+.screen{min-height:calc(100dvh - 44px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));position:relative;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px;
+  display:flex;align-items:center;justify-content:center;animation:fadeIn .5s ease}
+@keyframes fadeIn{from{opacity:.0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.wrap{width:min(1080px,100%)}
+.pill{border:0;background:var(--cream);color:var(--crimson);font-weight:700;font-size:20px;padding:12px 30px;border-radius:999px;text-decoration:underline;text-underline-offset:4px;box-shadow:0 4px 0 rgba(0,0,0,.12);transition:transform .15s}
+.pill:hover{transform:translateY(-2px) scale(1.03)}
+.pill.small{font-size:15px;padding:6px 16px}
+.back{position:absolute;top:14px;right:max(16px,env(safe-area-inset-right,0px));z-index:5}
+.pill.red{background:var(--crimson);color:var(--white)}
+
+/* LOCK */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(20px,5vw,64px);align-items:center}
+.heartpanel{background:var(--white) var(--hearts-bg) ;background-size:64px;aspect-ratio:3/4;max-height:72vh;width:100%;position:relative;display:grid;place-items:center;overflow:visible}
+.lacy{width:108%;max-width:none;aspect-ratio:100/90;position:relative;filter:drop-shadow(0 6px 14px rgba(0,0,0,.18))}
+.lacy::before{content:"";position:absolute;inset:-5%;background:radial-gradient(circle,#fff 30%,#f3e6ea 31% 40%,#fff 41%) 0 0/12px 12px;-webkit-mask:var(--heart) center/100% 100% no-repeat;mask:var(--heart) center/100% 100% no-repeat}
+.lacy .ph{position:absolute;inset:0;-webkit-mask:var(--heart) center/100% 100% no-repeat;mask:var(--heart) center/100% 100% no-repeat;background-size:cover;background-position:center 30%}
+.lock{display:grid;justify-items:center;gap:14px}
+.lock h2{margin:0;font-size:22px;font-weight:600;letter-spacing:.5px}
+.slots{display:flex;gap:10px}
+.slot{width:52px;height:46px;border:3px solid var(--cream);border-radius:10px;display:grid;place-items:center;font-size:24px;font-weight:700}
+.keys{display:grid;grid-template-columns:repeat(3,64px);gap:14px 22px}
+.key{width:64px;height:64px;border-radius:50%;border:0;background:var(--cream);color:var(--crimson);font-size:30px;font-weight:700;text-decoration:underline;text-underline-offset:5px;transition:transform .1s}
+.key:active{transform:scale(.9)}
+.shake{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
+.hintline{font-size:15px;min-height:20px;color:var(--cream)}
+
+/* FILM */
+#film{padding:0;align-items:stretch;overflow:hidden;background:var(--night)}
+#sky{position:absolute;inset:0;width:100%;height:100%}
+.film-ui{position:relative;z-index:2;width:100%;display:grid;grid-template-rows:auto 1fr auto;padding:18px max(16px,env(safe-area-inset-right,0px)) 22px max(16px,env(safe-area-inset-left,0px))}
+.film-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.chapter{font-family:var(--f-hand);font-size:30px;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.film-stage{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:clamp(18px,4vw,48px);align-items:center;max-width:1000px;margin:auto;width:100%}
+.film-photo{width:clamp(180px,30vw,330px);background:#fff;padding:10px 10px 38px;transform:rotate(-3deg);box-shadow:0 18px 40px rgba(0,0,0,.35);transition:opacity .9s,transform .9s}
+.film-photo img{aspect-ratio:4/5;object-fit:cover;width:100%;animation:kb 7s ease-out both}
+.film-photo .cap{font-family:var(--f-hand);color:var(--crimson);font-size:22px;text-align:center;margin-top:6px}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.film-text{font-family:var(--f-serif);font-size:clamp(24px,3.6vw,44px);line-height:1.25;text-wrap:balance;text-shadow:0 2px 16px rgba(0,0,0,.4);transition:opacity .9s}
+.film-text .sig{display:block;font-family:var(--f-hand);font-size:.8em;margin-top:14px;color:var(--cream)}
+.hide{opacity:0}
+.dots{display:flex;gap:8px;justify-content:center}
+.dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35)}
+.dots i.on{background:var(--white)}
+.comicbox{width:min(980px,100%);background:#120408;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.comicbox video{width:100%;aspect-ratio:16/9;border-radius:12px;background:#000;display:block}
+.callframe{border-radius:22px;overflow:hidden;background:#000}
+.callframe iframe{width:100%;aspect-ratio:3/4;max-height:70vh;border:0;display:block}
+.film-start{position:absolute;inset:0;z-index:3;display:grid;place-items:center;background:rgba(13,27,62,.55)}
+
+/* ASK */
+.locket{width:100%;position:relative}
+.locket svg{width:100%;height:auto;overflow:visible}
+.ask{display:grid;justify-items:center;gap:18px;text-align:center}
+.ask h1{font-size:clamp(28px,3.4vw,42px);line-height:1.2;margin:0;font-weight:600;text-wrap:balance}
+.yn{display:flex;gap:clamp(30px,8vw,90px);position:relative}
+.sticker{width:clamp(130px,16vw,190px)}
+.meme{background:var(--paper);color:var(--ink);border-radius:16px;padding:12px;display:grid;gap:6px;justify-items:center;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.meme .mt{font-weight:600;font-size:15px;line-height:1.25}
+
+/* NO */
+.nope{display:grid;justify-items:center;gap:22px;text-align:center}
+.nope h1{font-size:clamp(40px,7vw,80px);margin:0;line-height:1.05}
+
+/* GIFTS */
+#gifts{background:var(--cream) var(--stars-bg);background-size:120px;color:var(--ink)}
+.tape{display:inline-block;position:relative;background:#F9DE9A;padding:6px 30px 10px;font-family:var(--f-hand);font-size:clamp(34px,5vw,52px);color:var(--crimson);transform:rotate(-2deg);border:2px solid #f0b43a}
+.tape::before,.tape::after{content:"";position:absolute;width:14px;height:14px;border-radius:50%;background:#F2A93B;top:-9px;left:-7px;box-shadow:0 0 0 3px #fff3}
+.tape::after{left:auto;right:-7px;top:auto;bottom:-9px}
+.giftgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 20px;margin-top:30px}
+.gift{border:0;background:none;display:grid;justify-items:center;gap:6px;color:var(--ink)}
+.gift svg{width:min(170px,100%);height:auto;transition:transform .25s;filter:drop-shadow(0 10px 10px rgba(80,10,20,.25))}
+.gift:hover svg{transform:translateY(-6px) rotate(-3deg)}
+.gift .lab{background:var(--white);border-radius:999px;padding:6px 18px;font-weight:700;font-size:19px;color:var(--crimson);text-decoration:underline;text-underline-offset:4px}
+.gift .sub{font-family:var(--f-hand);font-size:21px;color:var(--crimson-d)}
+.gift.opened svg{animation:pop .6s}
+@keyframes pop{30%{transform:scale(1.12) rotate(4deg)}60%{transform:scale(.95)}}
+
+/* GIFT 1 card */
+.cardrow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,50px);align-items:center}
+.doily{position:relative;display:flex;align-items:center;gap:0}
+.doily .lace{position:absolute;left:-4%;top:-14%;width:58%;opacity:.95;z-index:0}
+.doily .note,.doily .strip{z-index:1}
+.note{position:relative;background:#fff;color:var(--crimson-d);padding:30px 26px;transform:rotate(-4deg);width:62%;box-shadow:0 10px 26px rgba(0,0,0,.25);font-family:var(--f-hand);font-size:22px;line-height:1.3}
+.note b{display:block;font-size:34px;margin-bottom:8px}
+.strip{background:var(--blush);padding:10px;display:grid;gap:8px;width:34%;transform:rotate(3deg) translateX(-8px);box-shadow:0 10px 26px rgba(0,0,0,.25)}
+.strip img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.env{position:relative;aspect-ratio:4/3;width:100%;max-width:420px;justify-self:center;border:0;background:none;padding:0}
+.env .eback{position:absolute;inset:18% 0 0;background:#F7B7C6;border-radius:8px}
+.env .paperin{position:absolute;left:8%;right:8%;top:4%;bottom:30%;background:var(--paper);display:grid;place-items:center;transition:transform .5s;background-image:repeating-linear-gradient(transparent 0 22px,#efd9d0 22px 23px)}
+.env:hover .paperin{transform:translateY(-10px)}
+.env .paperin span{font-weight:700;font-size:clamp(20px,2.6vw,28px);color:var(--crimson);text-decoration:underline;text-underline-offset:5px}
+.env .front{position:absolute;inset:auto 0 0;height:62%;background:linear-gradient(160deg,#FBC9D5,#F3A7B9);clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);border-radius:0 0 8px 8px}
+.env .seal{position:absolute;left:50%;top:58%;width:64px;height:64px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 40% 35%,#f9d3dc,#E89AAE 60%,#D97C94);box-shadow:inset 0 0 0 5px #f6c0cd,0 4px 10px rgba(0,0,0,.2);display:grid;place-items:center;color:#fff;font-size:26px}
+
+/* letter */
+.stamp{position:relative;background:var(--paper);color:var(--crimson-d);padding:44px clamp(24px,4vw,56px);font-family:var(--f-type);font-size:clamp(15px,1.45vw,17px);line-height:1.65;max-width:720px}
+.stamp::before,.stamp::after{content:"";position:absolute;pointer-events:none}
+.stamp::before{left:0;right:0;top:-12px;bottom:-12px;background:radial-gradient(circle,var(--crimson) 11px,transparent 12px) 0 0/34px 24px repeat-x,radial-gradient(circle,var(--crimson) 11px,transparent 12px) 0 100%/34px 24px repeat-x}
+.stamp::after{top:0;bottom:0;left:-12px;right:-12px;background:radial-gradient(circle,var(--crimson) 11px,transparent 12px) 0 0/24px 34px repeat-y,radial-gradient(circle,var(--crimson) 11px,transparent 12px) 100% 0/24px 34px repeat-y}
+.stamp p{margin:0 0 14px;max-width:62ch}
+.stamp .sign{font-family:var(--f-hand);font-size:32px}
+.letterrow{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);gap:24px;align-items:end}
+.cutout{border:8px solid #fff;transform:rotate(4deg);box-shadow:0 14px 30px rgba(0,0,0,.3)}
+.cutout img{aspect-ratio:3/4;object-fit:cover}
+
+/* GIFT 2 day */
+#day{background:var(--blush);color:var(--ink);overflow:hidden}
+.cal{position:relative;width:100%;max-width:620px;aspect-ratio:1/1}
+.cal .grid{position:absolute;inset:0;transform:rotate(-14deg);background:linear-gradient(var(--crimson) 1px,transparent 1px) 0 0/33.33% 33.33%,linear-gradient(90deg,var(--crimson) 1px,transparent 1px) 0 0/33.33% 33.33%;opacity:.55}
+.cal .num{position:absolute;font-family:var(--f-serif);font-size:clamp(20px,3vw,32px);color:var(--crimson-d)}
+.cal .big{position:absolute;left:22%;top:24%;width:52%;aspect-ratio:1/1;background:var(--crimson);color:#fff;transform:rotate(-14deg);display:grid;place-items:center;padding:8%;box-shadow:0 16px 30px rgba(120,10,30,.35)}
+.cal .big h2{font-family:var(--f-hand);font-size:clamp(36px,6vw,68px);line-height:.95;margin:0;font-weight:700}
+.cal .big .d{position:absolute;top:-18%;right:-6%;font-family:var(--f-ui);font-size:clamp(26px,4vw,42px);font-weight:700;color:var(--crimson)}
+.cal .ring{position:absolute;top:-30%;right:-22%;width:52%}
+.framestack{background:var(--crimson);padding:10px;display:grid;gap:10px;box-shadow:0 14px 30px rgba(0,0,0,.2);max-width:300px;justify-self:center}
+.framestack img{aspect-ratio:4/3;object-fit:cover}
+.dayrow{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:center}
+.daynote{font-family:var(--f-hand);font-size:26px;color:var(--crimson-d);text-align:center;margin-top:8px}
+
+/* MUSEUM */
+.museum h1{margin:0;text-align:center;font-family:var(--f-serif);font-style:italic;font-weight:500;font-size:clamp(46px,8vw,96px);line-height:1}
+.museum h1 b{font-style:normal;color:var(--gold);font-weight:700;font-size:.8em}
+.lights{width:100%;height:70px;margin-top:6px}
+.wall{display:flex;flex-wrap:wrap;justify-content:center;gap:26px 22px;margin-top:-26px}
+.pola{border:0;background:#fff;padding:10px 10px 40px;width:clamp(140px,19vw,200px);box-shadow:0 12px 24px rgba(0,0,0,.28);position:relative;transition:transform .25s}
+.pola::before{content:"";position:absolute;top:-14px;left:50%;width:12px;height:26px;background:#d9b37a;border-radius:3px;transform:translateX(-50%)}
+.pola img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.pola span{position:absolute;left:0;right:0;bottom:8px;font-family:var(--f-hand);font-size:20px;color:var(--crimson)}
+.pola:hover{transform:rotate(0) scale(1.05)!important;z-index:2}
+.memes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:36px}
+.section-title{font-family:var(--f-hand);font-size:34px;text-align:center;margin:40px 0 0}
+
+/* reasons */
+.reasons-hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:center}
+.reasons-hero img{width:100%;aspect-ratio:4/3;object-fit:cover;box-shadow:0 14px 30px rgba(0,0,0,.3)}
+.r21{font-family:var(--f-serif);text-align:right;line-height:1.05}
+.r21 .n{font-family:var(--f-hand);font-size:clamp(90px,14vw,150px);color:#BFD3F2;line-height:.8;display:block;font-weight:700}
+.r21 .t{font-size:clamp(34px,5vw,58px);letter-spacing:1px}
+.r21 em{color:var(--gold)}
+.notebook{background:#fdfaf3 repeating-linear-gradient(transparent 0 31px,#e3d6c4 31px 32px);color:#2a1a1a;padding:30px clamp(18px,4vw,56px) 30px clamp(30px,6vw,80px);font-family:var(--f-type);font-size:clamp(14px,1.6vw,18px);line-height:32px;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.3);max-width:860px;width:100%}
+.notebook::before{content:"";position:absolute;left:clamp(10px,2.4vw,30px);top:20px;bottom:20px;width:18px;background:radial-gradient(circle at 50% 50%,#7b7b7b 5px,#cfcfcf 6px 8px,transparent 9px) 0 0/18px 48px repeat-y}
+.notebook ol{margin:0;padding-left:2.4em}
+.notebook li{text-transform:uppercase}
+.notebook li.new{animation:fadeIn .4s}
+
+/* REELS */
+.reels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:22px}
+.phone{background:#1b0a0e;border-radius:26px;padding:8px;box-shadow:0 16px 30px rgba(0,0,0,.35)}
+.phone video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:20px;background:#000}
+.phone p{margin:8px 4px 4px;text-align:center;font-family:var(--f-hand);font-size:21px}
+h1.page{font-family:var(--f-serif);font-style:italic;font-weight:500;font-size:clamp(38px,6vw,64px);margin:0;text-align:center}
+.lede{text-align:center;color:var(--cream);font-size:17px;margin:8px auto 0;max-width:60ch}
+
+/* GAMES */
+.hub{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:26px}
+.gcard{border:0;background:var(--paper);color:var(--ink);border-radius:22px;padding:18px;display:grid;gap:8px;justify-items:center;text-align:center;box-shadow:0 10px 0 var(--crimson-d);transition:transform .15s}
+.gcard:hover{transform:translateY(-4px)}
+.gcard h3{margin:0;font-size:21px;color:var(--crimson)}
+.gcard p{margin:0;font-size:14px;line-height:1.35}
+.gcard .ic{font-size:40px}
+.mem{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:560px;margin:18px auto 0}
+.mc{display:block;position:relative;width:100%;aspect-ratio:3/4;border:0;padding:0;border-radius:12px;perspective:600px;background:none}
+.mc .in{position:absolute;inset:0;display:block;transition:transform .45s;transform-style:preserve-3d}
+.mc.up .in,.mc.done .in{transform:rotateY(180deg)}
+.mc .f,.mc .b{display:block;position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.mc .f{background:var(--cream) var(--hearts-bg);background-size:40px;border:4px solid var(--cream)}
+.mc .b{transform:rotateY(180deg);border:4px solid #fff}
+.mc .b img{width:100%;height:100%;object-fit:cover}
+.mc.done .b{border-color:var(--gold)}
+.stat{display:flex;gap:16px;justify-content:center;margin-top:12px;font-size:17px;font-variant-numeric:tabular-nums}
+.gamebox{position:relative;max-width:620px;margin:16px auto 0;border-radius:20px;overflow:hidden;background:linear-gradient(#2a1450,#9B1829);touch-action:none}
+#catch{width:100%;aspect-ratio:3/4;max-height:70vh;display:block}
+.overlay{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px;text-align:center;background:rgba(80,8,20,.6);padding:20px}
+.overlay h2{margin:0;font-size:30px}
+.deck{max-width:440px;margin:18px auto 0;perspective:900px}
+.qcard{display:block;aspect-ratio:3/4;width:100%;border:0;padding:0;background:none;position:relative}
+.qcard .in{display:block;position:absolute;inset:0;transition:transform .55s;transform-style:preserve-3d}
+.qcard.flip .in{transform:rotateY(180deg)}
+.qcard .f,.qcard .b{position:absolute;inset:0;border-radius:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:grid;place-items:center;padding:28px;text-align:center}
+.qcard .f{background:var(--cream) var(--hearts-bg);background-size:50px;color:var(--crimson);font-size:30px;font-weight:700;border:10px solid var(--paper)}
+.qcard .f span{background:var(--paper);padding:10px 18px;border-radius:14px}
+.qcard .b{transform:rotateY(180deg);background:var(--paper);color:var(--ink);align-content:center;gap:16px}
+.qcard .b small{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--crimson);font-weight:700}
+.qcard .b p{margin:0;font-family:var(--f-serif);font-size:clamp(22px,3vw,28px);line-height:1.3}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+
+/* wish jar */
+.jarrow{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:26px;align-items:start;margin-top:20px}
+.jar svg{width:100%;max-width:300px;margin:auto;display:block}
+.form{display:grid;gap:10px;background:var(--paper);color:var(--ink);padding:16px;border-radius:18px}
+.form textarea,.form input,.form select{font:inherit;font-size:16px;border:2px solid var(--blush);border-radius:12px;padding:10px 12px;background:#fff;color:var(--ink);width:100%}
+.wishes{display:grid;gap:10px;margin-top:14px;max-height:52vh;overflow:auto;padding-right:4px}
+.wish{background:var(--paper);color:var(--ink);border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+.wish p{margin:0;font-size:16px;overflow-wrap:anywhere}
+.wish small{color:var(--muted);font-size:13px}
+.wish.done p{text-decoration:line-through;text-decoration-color:var(--crimson);color:#8a6a6e}
+.tick{border:2px solid var(--crimson);background:#fff;color:var(--crimson);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px}
+.wish.done .tick{background:var(--crimson);color:#fff}
+
+/* US: chat + call */
+.us{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:22px;margin-top:20px;align-items:start}
+.chat{background:var(--paper);color:var(--ink);border-radius:22px;display:grid;grid-template-rows:auto 1fr auto auto;height:min(68vh,620px);overflow:hidden}
+.chathead{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--blush);gap:10px;flex-wrap:wrap}
+.chathead b{color:var(--crimson);font-size:18px}
+.online{font-size:13px;display:flex;align-items:center;gap:6px}
+.online i{width:9px;height:9px;border-radius:50%;background:#bbb}
+.online.on i{background:#2fb35c}
+.msgs{overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;background:#fffaf6 var(--hearts-bg);background-size:90px;background-blend-mode:luminosity}
+.msg{max-width:78%;padding:9px 13px;border-radius:18px;font-size:16px;line-height:1.35;overflow-wrap:anywhere;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.msg.mine{align-self:flex-end;background:var(--crimson);color:#fff;border-bottom-right-radius:6px}
+.msg.theirs{align-self:flex-start;border-bottom-left-radius:6px}
+.msg small{display:block;font-size:11px;opacity:.7;margin-top:3px}
+.msg.big{font-size:34px;background:none;box-shadow:none;padding:0}
+.quick{display:flex;gap:6px;padding:8px 12px 0;flex-wrap:wrap}
+.quick button{border:0;background:var(--blush);border-radius:999px;padding:5px 11px;font-size:14px;color:var(--ink)}
+.send{display:flex;gap:8px;padding:10px 12px 12px}
+.send input{flex:1;min-width:0;font:inherit;font-size:16px;border:2px solid var(--blush);border-radius:999px;padding:10px 14px;color:var(--ink);background:#fff}
+.send button{border:0;background:var(--crimson);color:#fff;border-radius:999px;padding:0 18px;font-weight:700;font-size:16px}
+.callcard{background:var(--paper);color:var(--ink);border-radius:22px;padding:20px;display:grid;gap:12px;text-align:center;justify-items:center}
+.callcard h3{margin:0;color:var(--crimson);font-size:22px}
+.callcard p{margin:0;font-size:15px;line-height:1.4}
+.callcard a{display:inline-block;text-decoration:none}
+.roomname{font-family:var(--f-type);background:#fff;border:2px dashed var(--pink);padding:6px 10px;border-radius:10px;font-size:14px;user-select:all;overflow-wrap:anywhere}
+.who{display:flex;gap:6px}
+.who button{border:2px solid var(--crimson);background:#fff;color:var(--crimson);border-radius:999px;padding:4px 12px;font-weight:700;font-size:14px}
+.who button[aria-pressed="true"]{background:var(--crimson);color:#fff}
+.notice{font-size:14px;color:var(--crimson-d);background:#fff3f5;border-radius:12px;padding:10px 12px;margin:10px}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:80;background:rgba(30,0,8,.88);display:grid;place-items:center;padding:24px}
+.lb img{max-height:86vh;max-width:min(92vw,900px);border:10px solid #fff;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+
+/* floating hearts on yes */
+.floaty{position:fixed;bottom:-40px;z-index:70;pointer-events:none;font-size:26px;animation:up 3.2s ease-in forwards}
+@keyframes up{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+
+@media (max-width:820px){
+  .split,.cardrow,.letterrow,.dayrow,.reasons-hero,.jarrow,.us{grid-template-columns:minmax(0,1fr)}
+  .heartpanel{max-height:none;width:min(360px,86%);margin:auto}
+  .giftgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .reels,.hub,.memes{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .film-stage{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center}
+  .film-photo{width:min(240px,62vw)}
+  .r21{text-align:center}
+  .cutout{max-width:240px;justify-self:center}
+  .keys{grid-template-columns:repeat(3,58px);gap:12px 18px}
+  .key{width:58px;height:58px;font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE7A3"/><stop offset=".45" stop-color="#D9A33A"/><stop offset=".7" stop-color="#F7D27A"/><stop offset="1" stop-color="#A8741F"/></linearGradient>
+    <linearGradient id="boxg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C21F2E"/><stop offset=".6" stop-color="#A3172A"/><stop offset="1" stop-color="#7d0f1e"/></linearGradient>
+    <symbol id="giftbox" viewBox="0 0 200 200">
+      <rect x="30" y="86" width="140" height="104" rx="4" fill="url(#boxg)"/>
+      <rect x="22" y="66" width="156" height="30" rx="4" fill="#B81C2C"/>
+      <rect x="22" y="90" width="156" height="6" fill="#00000022"/>
+      <rect x="88" y="66" width="24" height="124" fill="url(#gold)"/>
+      <path d="M100 66 C70 20 30 40 56 62 C66 70 88 68 100 66Z" fill="url(#gold)" stroke="#a8741f" stroke-width="2"/>
+      <path d="M100 66 C130 20 170 40 144 62 C134 70 112 68 100 66Z" fill="url(#gold)" stroke="#a8741f" stroke-width="2"/>
+      <path d="M100 66 C92 82 78 96 70 104 L82 104 C90 92 96 82 100 66Z M100 66 C108 82 122 96 130 104 L118 104 C110 92 104 82 100 66Z" fill="#D9A33A"/>
+      <circle cx="100" cy="66" r="10" fill="url(#gold)" stroke="#a8741f" stroke-width="2"/>
+    </symbol>
+    <symbol id="heart" viewBox="0 0 100 90"><path d="M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z"/></symbol>
+  </defs>
+</svg>
+
+<header class="bar" id="bar">
+  <span class="names">Monaal &amp; Riddhi</span>
+  <span class="tools">
+    <button class="iconbtn" id="musicBtn" aria-pressed="false" aria-label="Play our music" title="Music">♪</button>
+    <button class="iconbtn" id="menuBtn" aria-label="Open menu" title="Menu">☰</button>
+  </span>
+</header>
+<nav class="menu" id="menu" hidden></nav>
+
+<main id="app"></main>
+<div class="lb" id="lb" hidden><img id="lbImg" alt=""></div>
+
+<script>
+(() => {
+"use strict";
+const PASS = "0406";
+const $ = (s, r = document) => r.querySelector(s);
+const app = $("#app");
+const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+let unlocked = false;
+try { unlocked = sessionStorage.getItem("mr-unlocked") === "1"; } catch(e){}
+
+/* ---------- original little mochi duo (both with glasses, like us) ---------- */
+function face(cx, mood, who){
+  const eyeY = 62;
+  let eyes;
+  if (mood === "happy" || mood === "love") eyes = `<path d="M${cx-15} ${eyeY+2} q5 -6 10 0 M${cx+5} ${eyeY+2} q5 -6 10 0" stroke="#3a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  else if (mood === "cry") eyes = `<path d="M${cx-15} ${eyeY} l9 3 M${cx+15} ${eyeY} l-9 3" stroke="#3a1a1a" stroke-width="3" stroke-linecap="round"/><path d="M${cx-11} ${eyeY+6} q-4 12 0 16 q4 -4 0 -16Z M${cx+11} ${eyeY+6} q-4 12 0 16 q4 -4 0 -16Z" fill="#7cc7ff"/>`;
+  else eyes = `<circle cx="${cx-10}" cy="${eyeY}" r="3.6" fill="#3a1a1a"/><circle cx="${cx+10}" cy="${eyeY}" r="3.6" fill="#3a1a1a"/>`;
+  const mouth = mood === "cry" ? `<path d="M${cx-6} ${eyeY+20} q6 -6 12 0" stroke="#3a1a1a" stroke-width="2.6" fill="none" stroke-linecap="round"/>`
+    : mood === "wait" ? `<path d="M${cx-5} ${eyeY+18} h10" stroke="#3a1a1a" stroke-width="2.6" stroke-linecap="round"/>`
+    : `<path d="M${cx-6} ${eyeY+15} q6 7 12 0" stroke="#3a1a1a" stroke-width="2.6" fill="#e8576b" stroke-linecap="round"/>`;
+  const glasses = who === "m"
+    ? `<g fill="none" stroke="#1b1b1b" stroke-width="3.4"><path d="M${cx-24} ${eyeY-7} l5 -6 h11 l5 6 v9 l-5 6 h-11 l-5 -6Z"/><path d="M${cx+4} ${eyeY-7} l5 -6 h11 l5 6 v9 l-5 6 h-11 l-5 -6Z"/><path d="M${cx-4} ${eyeY-2} h8"/></g>`
+    : `<g fill="none" stroke="#C9A24A" stroke-width="2"><circle cx="${cx-11}" cy="${eyeY}" r="10"/><circle cx="${cx+11}" cy="${eyeY}" r="10"/><path d="M${cx-1} ${eyeY-2} q1 -2 2 0"/></g>`;
+  const blush = `<ellipse cx="${cx-22}" cy="${eyeY+12}" rx="6" ry="3.5" fill="#f7a1b0" opacity=".8"/><ellipse cx="${cx+22}" cy="${eyeY+12}" rx="6" ry="3.5" fill="#f7a1b0" opacity=".8"/>`;
+  return blush + eyes + glasses + mouth;
+}
+function mochi(who, mood, x = 0){
+  const cx = 60 + x;
+  if (who === "m") return `<g>
+    <path d="M${cx-48} 108 C${cx-52} 40 ${cx-30} 24 ${cx} 24 C${cx+30} 24 ${cx+52} 40 ${cx+48} 108 Z" fill="#F2D2AE" stroke="#c9a07a" stroke-width="2"/>
+    <path d="M${cx-30} 32 q-4 -16 10 -14 q2 -12 16 -8 q8 -10 18 0 q14 -4 14 10 q12 2 6 16 q-20 -10 -40 -4 q-12 -6 -24 0Z" fill="#2a1d1d"/>
+    ${face(cx, mood, "m")}</g>`;
+  return `<g>
+    <path d="M${cx-34} 40 q-22 30 -14 74 l16 0 Z M${cx+34} 40 q22 30 14 74 l-16 0Z" fill="#2a1d1d"/>
+    <path d="M${cx-46} 108 C${cx-50} 42 ${cx-28} 26 ${cx} 26 C${cx+28} 26 ${cx+50} 42 ${cx+46} 108 Z" fill="#FFFFFF" stroke="#e7cfd6" stroke-width="2"/>
+    <path d="M${cx-36} 46 q36 -36 72 0 q-10 -26 -36 -24 q-26 -2 -36 24Z" fill="#2a1d1d"/>
+    <circle cx="${cx}" cy="44" r="2.6" fill="#C21F2E"/>
+    ${face(cx, mood, "r")}</g>`;
+}
+function duo(mood = "love"){
+  const hearts = mood === "love" ? `<use href="#heart" x="104" y="2" width="20" height="18" fill="#E8344A"/><use href="#heart" x="126" y="12" width="12" height="11" fill="#F27A8C"/>` : "";
+  return `<svg class="sticker" viewBox="0 0 240 120" role="img" aria-label="two little mochi in glasses cuddling">${mochi("m", mood === "cry" ? "cry" : "happy", 0)}<g transform="rotate(-8 170 70)">${mochi("r", mood === "cry" ? "wait" : "happy", 110)}</g>${hearts}</svg>`;
+}
+function solo(who, mood, label){ return `<svg class="sticker" viewBox="0 0 120 120" role="img" aria-label="${label || "little mochi"}">${mochi(who, mood)}</svg>`; }
+
+/* ---------- content ---------- */
+const P = n => `img/${n}.jpg`;
+const FILM = [
+  { ch:"Subah", key:"dawn", img:"pink-selfie", cap:"good morning, you", text:"Every morning, before the sun even wakes up, my first thought is you." },
+  { ch:"Din", key:"day", img:"street", cap:"all day, every day", text:"All day long, in lectures, in code, in every cup of chai, I find little pieces of you." },
+  { ch:"Shaam", key:"golden", img:"walking", cap:"walks with you", text:"When the evening comes, all I want is to tell you about my whole day." },
+  { ch:"Raat", key:"night", img:"lights-selfie", cap:"under the lights", text:"And at night, when the whole world goes quiet, my heart still says your name." },
+  { ch:"Sukoon", key:"midnight", img:"hug", cap:"my safe place", text:"You are my sukoon, Riddhi. The peace I didn't know I was looking for." },
+  { ch:"28 · 10", key:"finale", img:"dandiya-selfie", cap:"officially us", text:"The day we said it officially. And today I'm saying it again: I love you the most.", sig:"— your Monaal" }
+];
+const MUSEUM = [
+  ["hug2","garba night"],["cinema","movie date"],["dupatta","caught you 🙈"],["bangles","pink & stripes"],
+  ["strip","your shoulder, my pillow"],["dandiya","dandiya queen"],["street","late walks"],["profile","lost in thought"],["story","your story, our song"]
+];
+const REASONS = [
+  "You make me smile without even trying.","You are my sukoon, my peace.","Your laugh fixes my worst days.",
+  "You look at me like I'm your favourite person.","You rest on my shoulder like it's home.","You make ordinary days feel like festivals.",
+  "You believe in me, even on my buggy days.","You accept me exactly as I am.","You listen to every rant of mine.",
+  "You make me want to be a better man.","You look stunning in a lehenga and in a plaid shirt.","Your glasses and my glasses: a perfect match.",
+  "You are patient with me.","You make every dandiya night magical.","You never give up on us.",
+  "You remember the little things.","You turn movie halls into the best seats in the world.","You're my favourite person to talk to, day and night.",
+  "You make me feel safe.","Life is simply better with you.","I love you because you're you, Riddhi."
+];
+const MEMES = [
+  { svg:() => solo("m","cry","Monaal crying"), t:"Me after Riddhi replies with just “hmm”" },
+  { svg:() => solo("r","happy","Riddhi smiling"), t:"Riddhi: “just one photo.” Also Riddhi: 47 photos later" },
+  { svg:() => duo("love"), t:"POV: you're my favourite notification" },
+  { svg:() => solo("m","wait","Monaal waiting"), t:"Monaal waiting for her “reached home” text" }
+];
+const CARDS = [
+  ["Truth","What's the first thing you noticed about me?"],["Truth","When did you know it was more than friendship?"],
+  ["Truth","Which photo of us is your favourite, and why?"],["Truth","What's one thing I do that instantly makes you smile?"],
+  ["Would you rather","A dandiya night together or a cosy movie date?"],["Would you rather","Chai in the rain or ice cream at midnight?"],
+  ["Would you rather","Plan a surprise trip, or be surprised?"],["Would you rather","Matching glasses frames or matching kurtas?"],
+  ["Deep","Where do you see us five years from today?"],["Deep","What's a dream you haven't told anyone yet?"],
+  ["Deep","What does 'home' feel like to you?"],["Deep","What's one promise you want from me?"],
+  ["Cute dare","Send me a voice note saying 'I love you' in three different accents."],["Cute dare","Send me your silliest selfie, right now."],
+  ["Cute dare","Plan our next date in 60 seconds. Go!"],["Cute dare","Text me three things you love about me."],
+  ["Truth","What song reminds you of us?"],["Would you rather","Hold hands all day or one long hug?"],
+  ["Deep","What's your favourite memory of us so far?"],["Cute dare","Give me a nickname I've never heard before."]
+];
+const MEMORY_PICS = ["dandiya-selfie","cinema","pink-selfie","lights-selfie","bangles","street"];
+const CALL_ROOM = "MonaalRiddhi-Sukoon-2810";
+
+/* ---------- capabilities (all optional; page works without them) ---------- */
+const caps = { db:null, room:null, assets:null, user:null };
+let me = store.get("mr-who") || "";
+let songUrl = null;
+const chatSubs = new Set();
+let chatDocs = [], wishDocs = [], peers = [];
+const STANDALONE = !(window.claude && window.claude.use);
+function wireDb(db){
+  caps.db = db; if (!db) { rerender(); return; }
+  db.collection("chat").orderBy("ts","asc").limit(400).onSnapshot(s => { chatDocs = s.docs.map(d => ({ id:d.id, ...d.data() })); renderChatMsgs(); }, () => {});
+  db.collection("wishes").orderBy("ts","desc").limit(150).onSnapshot(s => { wishDocs = s.docs.map(d => ({ id:d.id, ...d.data() })); renderWishes(); }, () => {});
+  db.doc("settings/song").onSnapshot(s => { const d = s.exists ? s.data() : null; if (d && d.assetId) songUrl = "/_blob/" + d.assetId; renderSongBox(); }, () => {});
+  rerender();
+}
+function loadScript(src){ return new Promise((res, rej) => { const el = document.createElement("script"); el.src = src; el.onload = res; el.onerror = rej; document.head.appendChild(el); }); }
+function standaloneReady(){
+  const cfg = window.LOVE_CONFIG || {};
+  if (cfg.songUrl) songUrl = cfg.songUrl;
+  if (!cfg.firebase || !cfg.firebase.apiKey) return;
+  const v = "10.12.2";
+  loadScript(`https://cdn.jsdelivr.net/npm/firebase@${v}/firebase-app-compat.js`)
+    .then(() => loadScript(`https://cdn.jsdelivr.net/npm/firebase@${v}/firebase-firestore-compat.js`))
+    .then(() => { window.firebase.initializeApp(cfg.firebase); wireDb(window.firebase.firestore()); })
+    .catch(() => {});
+}
+function capsReady(){
+  if (STANDALONE){ standaloneReady(); return; }
+  window.claude.use("db").then(wireDb).catch(() => {});
+  window.claude.use("room").then(room => {
+    caps.room = room; if (!room) return;
+    room.onPeers(ch => { peers = ch.peers; renderOnline(); });
+    if (me) room.presence({ me }).catch(() => {});
+  }).catch(() => {});
+  window.claude.use("assets").then(a => { caps.assets = a; renderSongBox(); }).catch(() => {});
+  window.claude.use("user").then(u => { caps.user = u; renderSongBox(); }).catch(() => {});
+}
+function rerender(){ if (cur === "us") renderUs(); if (cur === "wishes") show("wishes"); }
+
+/* ---------- music: an original soft piano lullaby (or your uploaded song) ---------- */
+const music = { ctx:null, on:false, timer:null, next:0, step:0, out:null, el:null };
+const CH = [[50,57,62,66],[47,54,59,62],[43,50,55,59],[45,52,57,61]];
+const MEL = [[74,1],[73,.5],[71,.5],[69,2],[71,1],[69,.5],[66,.5],[66,2],[67,1],[69,1],[71,1],[74,1],[73,3],[0,1],[74,1],[76,.5],[74,.5],[73,1],[71,1],[69,1.5],[66,.5],[66,2],[67,1],[71,1],[69,1],[67,1],[66,1],[64,1],[62,2]];
+const hz = m => 440 * Math.pow(2, (m - 69) / 12);
+function note(m, t, dur, vel){
+  const c = music.ctx, g = c.createGain(), o1 = c.createOscillator(), o2 = c.createOscillator();
+  o1.type = "triangle"; o2.type = "sine"; o1.frequency.value = hz(m); o2.frequency.value = hz(m) * 2;
+  const g2 = c.createGain(); g2.gain.value = .25;
+  o1.connect(g); o2.connect(g2); g2.connect(g); g.connect(music.out);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vel, t + .015); g.gain.exponentialRampToValueAtTime(0.0001, t + dur + 1.2);
+  o1.start(t); o2.start(t); o1.stop(t + dur + 1.3); o2.stop(t + dur + 1.3);
+}
+function buildSynth(){
+  const c = music.ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const master = c.createGain(); master.gain.value = .55;
+  const lp = c.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 2600;
+  const rev = c.createConvolver(); const len = c.sampleRate * 2.6, buf = c.createBuffer(2, len, c.sampleRate);
+  for (let ch = 0; ch < 2; ch++){ const d = buf.getChannelData(ch); for (let i = 0; i < len; i++) d[i] = (Math.random()*2-1) * Math.pow(1 - i/len, 2.4); }
+  rev.buffer = buf; const wet = c.createGain(); wet.gain.value = .35;
+  lp.connect(master); lp.connect(rev); rev.connect(wet); wet.connect(master); master.connect(c.destination);
+  music.out = lp;
+}
+const BEAT = 60 / 68;
+function schedule(){
+  const c = music.ctx;
+  while (music.next < c.currentTime + .6){
+    const bar = Math.floor(music.step / 8) % 8, chord = CH[bar % 4], i8 = music.step % 8, t = music.next;
+    const pat = [0,1,2,3,2,1,2,1];
+    note(chord[pat[i8]] + (i8 === 3 ? 12 : 0) - 0, t, BEAT * .5, i8 === 0 ? .09 : .05);
+    if (i8 === 0) note(chord[0] - 12, t, BEAT * 3, .07);
+    music.step++; music.next += BEAT / 2;
+  }
+  // melody (separate clock)
+  while (music.mnext < c.currentTime + .6){
+    const [m, b] = MEL[music.mi % MEL.length];
+    if (m) note(m, music.mnext, BEAT * b * .9, .11);
+    music.mnext += BEAT * b; music.mi++;
+  }
+}
+function startMusic(){
+  if (music.on) return;
+  music.on = true; $("#musicBtn").setAttribute("aria-pressed","true");
+  if (songUrl){
+    if (!music.el){ music.el = document.createElement("video"); music.el.loop = true; music.el.playsInline = true; music.el.hidden = true; document.body.appendChild(music.el); }
+    if (music.el.src !== new URL(songUrl, location.href).href) music.el.src = songUrl;
+    music.el.play().catch(() => {});
+    return;
+  }
+  try {
+    if (!music.ctx) buildSynth();
+    music.ctx.resume();
+    music.next = music.ctx.currentTime + .1; music.mnext = music.next + BEAT * 4; music.mi = 0; music.step = 0;
+    schedule(); music.timer = setInterval(schedule, 150);
+  } catch(e){ music.on = false; }
+}
+function stopMusic(){
+  music.on = false; $("#musicBtn").setAttribute("aria-pressed","false");
+  clearInterval(music.timer); if (music.ctx) music.ctx.suspend().catch(() => {});
+  if (music.el) music.el.pause();
+}
+$("#musicBtn").onclick = () => music.on ? stopMusic() : startMusic();
+
+/* ---------- menu ---------- */
+const MENU = [["story","📖 Our story (comic)"],["film","🎬 Our day & night film"],["ask","💌 The surprise"],["gifts","🎁 All gifts"],["letter","✉️ My letter"],["day","📅 The day it became us"],["museum","🖼️ Museum of us"],["reasons","📝 21 reasons"],["reels","🎞️ Our reels"],["games","🎮 Play together"],["wishes","🫙 Wish jar"],["us","💬 Chat & video call"]];
+$("#menuBtn").onclick = () => {
+  const m = $("#menu");
+  if (!unlocked){ m.innerHTML = `<button data-go="lock">🔒 Enter the passcode first</button>`; }
+  else m.innerHTML = MENU.map(([k,l]) => `<button data-go="${k}">${l}</button>`).join("");
+  m.hidden = !m.hidden;
+};
+document.addEventListener("click", e => {
+  const go = e.target.closest("[data-go]");
+  if (go){ $("#menu").hidden = true; show(go.dataset.go); return; }
+  if (!e.target.closest("#menu,#menuBtn")) $("#menu").hidden = true;
+  const z = e.target.closest("[data-zoom]");
+  if (z){ $("#lbImg").src = z.dataset.zoom; $("#lb").hidden = false; }
+});
+$("#lb").onclick = () => { $("#lb").hidden = true; };
+document.addEventListener("keydown", e => { if (e.key === "Escape"){ $("#lb").hidden = true; $("#menu").hidden = true; } });
+
+/* ---------- router ---------- */
+let cur = "lock", cleanup = null;
+function show(name){
+  if (!unlocked && name !== "lock") name = "lock";
+  if (cleanup){ cleanup(); cleanup = null; }
+  cur = name;
+  const fn = VIEWS[name] || VIEWS.gifts;
+  app.innerHTML = ""; fn();
+  window.scrollTo(0, 0);
+}
+const backBtn = (to = "gifts", label = "back") => `<button class="pill small back" data-go="${to}">${label}</button>`;
+function screen(id, html, cls = ""){ const s = document.createElement("section"); s.className = "screen " + cls; s.id = id; s.innerHTML = html; app.appendChild(s); return s; }
+
+const VIEWS = {
+/* LOCK */
+lock(){
+  const s = screen("lock", `<div class="wrap split">
+    <div class="heartpanel"><div class="lacy"><div class="ph" style="background-image:url('${P("hug")}')"></div></div></div>
+    <div class="lock">
+      <svg width="34" height="40" viewBox="0 0 34 40" aria-hidden="true"><rect x="2" y="16" width="30" height="22" rx="5" fill="#F1DFD4"/><path d="M8 17v-6a9 9 0 0 1 18 0v6" stroke="#F1DFD4" stroke-width="4.5" fill="none"/><circle cx="17" cy="26" r="3" fill="#9B1829"/><rect x="15.6" y="27" width="2.8" height="6" fill="#9B1829"/></svg>
+      <h2>Enter passcode</h2>
+      <div class="slots" id="slots">${"<div class='slot'></div>".repeat(4)}</div>
+      <div class="keys" id="keys">${[1,2,3,4,5,6,7,8,9,"*",0,"#"].map(k => `<button class="key" data-k="${k}" aria-label="${k}">${k}</button>`).join("")}</div>
+      <button class="pill" id="enter">Enter</button>
+      <div class="hintline" id="hint" aria-live="polite">Hint: someone's DOB 🎂</div>
+    </div></div>`);
+  let code = "";
+  const paint = () => [...s.querySelectorAll(".slot")].forEach((el, i) => el.textContent = code[i] ? "✱" : "");
+  const submit = () => {
+    if (code === PASS){
+      unlocked = true; try { sessionStorage.setItem("mr-unlocked","1"); } catch(e){}
+      startMusic(); show("story");
+    } else {
+      const sl = $("#slots"); sl.classList.remove("shake"); void sl.offsetWidth; sl.classList.add("shake");
+      $("#hint").textContent = code.length < 4 ? "four digits, baby 🥺" : "Hmm, that's not our date 🙈 try again";
+      code = ""; paint();
+    }
+  };
+  s.querySelector("#keys").onclick = e => { const b = e.target.closest(".key"); if (!b) return; const k = b.dataset.k; if (k === "*"){ code = code.slice(0,-1); } else if (k === "#"){ code = ""; } else if (code.length < 4) code += k; paint(); };
+  s.querySelector("#enter").onclick = submit;
+  const kd = e => { if (/^\d$/.test(e.key) && code.length < 4){ code += e.key; paint(); } else if (e.key === "Backspace"){ code = code.slice(0,-1); paint(); } else if (e.key === "Enter") submit(); };
+  document.addEventListener("keydown", kd); cleanup = () => document.removeEventListener("keydown", kd);
+},
+
+/* STORY: our comic, as a video */
+story(){
+  const s = screen("story", `<div class="wrap" style="display:grid;gap:14px;justify-items:center;text-align:center">
+    <h1 class="page">Buddhu &amp; Googly: our story</h1>
+    <p class="lede" style="margin:0" id="partlbl">Our whole story, animated. Part 1 of 2 · press play ♥</p>
+    <div class="comicbox"><video id="comicv" src="vid/story1.mp4" poster="vid/story.jpg" controls playsinline preload="metadata"></video></div>
+    <div class="row" style="margin:0"><button class="pill small" id="part2">part 2 ›</button><button class="pill" data-go="film">continue ›</button></div>
+  </div>`);
+  const v = s.querySelector("#comicv");
+  let part = 1;
+  const toPart2 = () => { part = 2; v.src = "vid/story2.mp4"; $("#partlbl").textContent = "Part 2 of 2 ♥"; s.querySelector("#part2").hidden = true; v.play().catch(() => {}); };
+  s.querySelector("#part2").onclick = toPart2;
+  v.addEventListener("play", () => { if (music.on) stopMusic(); });
+  v.play().catch(() => {});
+  v.addEventListener("ended", () => { if (part === 1) toPart2(); else show("film"); });
+},
+
+/* FILM: day & night */
+film(){
+  startMusic();
+  const s = screen("film", `<canvas id="sky" aria-hidden="true"></canvas>
+    <div class="film-ui">
+      <div class="film-top"><span class="chapter" id="chapter"></span><span style="display:flex;gap:8px"><button class="pill small" id="replay">replay</button><button class="pill small" id="skip">skip ›</button></span></div>
+      <div class="film-stage">
+        <figure class="film-photo hide" id="fphoto" style="margin:0"><img id="fimg" alt=""><figcaption class="cap" id="fcap"></figcaption></figure>
+        <p class="film-text hide" id="ftext"></p>
+      </div>
+      <div><div class="dots" id="fdots">${FILM.map(() => "<i></i>").join("")}</div>
+        <div style="text-align:center;margin-top:14px" id="contWrap" hidden><button class="pill" data-go="ask">continue ›</button></div></div>
+    </div>`);
+  const cv = s.querySelector("#sky"), cx = cv.getContext("2d");
+  const SKY = { dawn:["#F49AB0","#FFD6A0"], day:["#5EA9EC","#CDE8FF"], golden:["#E9735A","#FFCF8F"], night:["#16224F","#3A3D80"], midnight:["#080C22","#24185A"], finale:["#0B0F2B","#5A1240"] };
+  const hex = h => [1,3,5].map(i => parseInt(h.slice(i,i+2),16));
+  const mix = (a,b,t) => { const A = hex(a), B = hex(b); return `rgb(${A.map((v,i) => Math.round(v + (B[i]-v)*t)).join(",")})`; };
+  const SCENE = 7000, TOTAL = SCENE * FILM.length;
+  const stars = Array.from({ length:160 }, () => ({ x:Math.random(), y:Math.random()*.75, r:Math.random()*1.6+.3, p:Math.random()*6 }));
+  const flies = Array.from({ length:26 }, () => ({ x:Math.random(), y:.55+Math.random()*.4, p:Math.random()*6 }));
+  let t0 = performance.now(), raf = 0, scene = -1, W = 0, H = 0, dpr = 1;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function size(){ dpr = Math.min(2, devicePixelRatio || 1); W = cv.clientWidth; H = cv.clientHeight; cv.width = W*dpr; cv.height = H*dpr; cx.setTransform(dpr,0,0,dpr,0,0); }
+  size(); addEventListener("resize", size);
+  function mountains(y, amp, col, seed){
+    cx.fillStyle = col; cx.beginPath(); cx.moveTo(0, H);
+    for (let x = 0; x <= W; x += 8){ const k = x / W; cx.lineTo(x, H*y - Math.abs(Math.sin(k*5.2+seed))*amp*H - Math.sin(k*13+seed)*amp*.25*H); }
+    cx.lineTo(W, H); cx.fill();
+  }
+  function setScene(i){
+    scene = i; const f = FILM[i];
+    const ph = $("#fphoto"), tx = $("#ftext");
+    ph.classList.add("hide"); tx.classList.add("hide");
+    setTimeout(() => {
+      $("#fimg").src = P(f.img); $("#fimg").style.animation = "none"; void $("#fimg").offsetWidth; $("#fimg").style.animation = "";
+      $("#fcap").textContent = f.cap; $("#chapter").textContent = f.ch;
+      tx.innerHTML = esc(f.text) + (f.sig ? `<span class="sig">${esc(f.sig)}</span>` : "");
+      ph.style.transform = `rotate(${i % 2 ? 3 : -3}deg)`;
+      ph.classList.remove("hide"); tx.classList.remove("hide");
+    }, scene === 0 ? 50 : 700);
+    [...s.querySelectorAll("#fdots i")].forEach((d, j) => d.classList.toggle("on", j <= i));
+    if (i === FILM.length - 1) $("#contWrap").hidden = false;
+  }
+  function frame(now){
+    const el = Math.max(0, Math.min(now - t0, TOTAL - 1)), i = Math.min(FILM.length - 1, Math.floor(el / SCENE)), local = (el % SCENE) / SCENE;
+    if (i !== scene) setScene(i);
+    const a = SKY[FILM[i].key], b = SKY[FILM[Math.min(i+1, FILM.length-1)].key], k = Math.max(0, (local - .7) / .3);
+    const g = cx.createLinearGradient(0,0,0,H); g.addColorStop(0, mix(a[0], b[0], k)); g.addColorStop(1, mix(a[1], b[1], k));
+    cx.fillStyle = g; cx.fillRect(0,0,W,H);
+    const prog = el / TOTAL; // 0..1 across the whole film
+    const nightAmt = Math.min(1, Math.max(0, (prog - .45) / .2));
+    // stars
+    if (nightAmt > 0){ for (const st of stars){ cx.globalAlpha = nightAmt * (.5 + .5*Math.sin(now/600 + st.p)); cx.fillStyle = "#fff"; cx.beginPath(); cx.arc(st.x*W, st.y*H, st.r, 0, 7); cx.fill(); } cx.globalAlpha = 1; }
+    // sun arc over first half, moon over second
+    const sunT = prog / .5;
+    if (sunT <= 1.05){ const sx = W*(.1 + .8*sunT), sy = H*(.75 - Math.sin(Math.PI*Math.min(sunT,1))*.55); const sg = cx.createRadialGradient(sx,sy,4,sx,sy,90); sg.addColorStop(0,"rgba(255,244,200,1)"); sg.addColorStop(.25,"rgba(255,214,120,.9)"); sg.addColorStop(1,"rgba(255,200,120,0)"); cx.fillStyle = sg; cx.beginPath(); cx.arc(sx,sy,90,0,7); cx.fill(); }
+    if (prog > .45){ const mt = (prog - .45) / .55, mx = W*(.15 + .7*mt), my = H*(.62 - Math.sin(Math.PI*Math.min(mt*1.1,1))*.42);
+      cx.fillStyle = "rgba(255,250,235,.95)"; cx.beginPath(); cx.arc(mx,my,30,0,7); cx.fill(); cx.fillStyle = mix(a[0], b[0], k); cx.beginPath(); cx.arc(mx+12,my-8,27,0,7); cx.fill(); }
+    // clouds by day
+    if (prog < .55){ cx.globalAlpha = .55 * (1 - nightAmt); cx.fillStyle = "#fff"; for (let c = 0; c < 4; c++){ const x = ((now/40 + c*W/3.3) % (W+240)) - 120, y = H*(.14 + c*.07); cx.beginPath(); cx.ellipse(x,y,60,16,0,0,7); cx.ellipse(x+34,y-10,36,16,0,0,7); cx.fill(); } cx.globalAlpha = 1; }
+    // hills (mountains of home)
+    mountains(.86, .16, mix("#7d3a5a","#1a1033",nightAmt), 1.3);
+    mountains(.95, .12, mix("#5a2240","#0e0a22",nightAmt), 4.1);
+    // fireflies / hearts at night
+    if (nightAmt > 0){ for (const f of flies){ const x = (f.x*W + Math.sin(now/1500+f.p)*30), y = f.y*H + Math.cos(now/1800+f.p)*16; cx.globalAlpha = nightAmt*(.4+.6*Math.abs(Math.sin(now/700+f.p))); cx.fillStyle = "#FFE9A8"; cx.beginPath(); cx.arc(x,y,2.2,0,7); cx.fill(); } cx.globalAlpha = 1; }
+    if (!reduce || el < TOTAL - 1) raf = requestAnimationFrame(frame);
+  }
+  raf = requestAnimationFrame(frame);
+  s.querySelector("#skip").onclick = () => show("ask");
+  s.querySelector("#replay").onclick = () => { t0 = performance.now(); scene = -1; $("#contWrap").hidden = true; };
+  cleanup = () => { cancelAnimationFrame(raf); removeEventListener("resize", size); };
+},
+
+/* ASK */
+ask(){
+  const s = screen("ask", `<div class="wrap split">
+    <div class="heartpanel" style="aspect-ratio:4/5"><div class="locket">
+      <svg viewBox="0 0 320 200" role="img" aria-label="a golden heart locket with two of our photos">
+        <defs>
+          <clipPath id="hL"><path transform="translate(22 52) scale(1.32)" d="M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z"/></clipPath>
+          <clipPath id="hR"><path transform="translate(166 52) scale(1.32)" d="M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z"/></clipPath>
+        </defs>
+        <path d="M150 52 q10 -34 20 0" stroke="url(#gold)" stroke-width="7" fill="none"/>
+        <rect x="148" y="10" width="24" height="24" rx="6" fill="url(#gold)"/>
+        <g transform="rotate(-6 88 110)"><path transform="translate(14 44) scale(1.48)" fill="url(#gold)" d="M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z"/>
+          <image href="${P("cinema")}" x="20" y="50" width="136" height="122" preserveAspectRatio="xMinYMid slice" clip-path="url(#hL)"/></g>
+        <g transform="rotate(6 232 110)"><path transform="translate(158 44) scale(1.48)" fill="url(#gold)" d="M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z"/>
+          <image href="${P("bangles")}" x="164" y="50" width="136" height="122" preserveAspectRatio="xMinYMid slice" clip-path="url(#hR)"/></g>
+      </svg></div></div>
+    <div class="ask">
+      <h1>I have a little surprise for you, Riddhi. Wanna see it?</h1>
+      ${duo("love")}
+      <div class="yn"><button class="pill" id="yes">YES</button><button class="pill" id="no">NO</button></div>
+    </div></div>`);
+  let dodges = 0;
+  const no = s.querySelector("#no");
+  const dodge = () => { if (dodges >= 3) return; dodges++; no.style.transform = `translate(${(Math.random()*120-60)|0}px,${(Math.random()*80-40)|0}px)`; };
+  no.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") dodge(); });
+  no.onclick = () => show("no");
+  s.querySelector("#yes").onclick = () => { burst(); setTimeout(() => show("gifts"), 900); };
+},
+no(){
+  screen("no", `<div class="nope"><h1>How dare you<br>click NO!</h1>
+    <button class="pill" data-go="ask">TRY AGAIN</button>
+    <div style="display:flex;gap:6px">${solo("m","cry","Monaal crying")}${solo("r","wait","Riddhi pouting")}</div>
+    <p style="font-family:var(--f-hand);font-size:26px;margin:0">the mochis are very upset rn</p></div>`);
+},
+
+/* GIFTS */
+gifts(){
+  const G = [["letter","Gift-1","a letter from me"],["day","Gift-2","the day it became us"],["museum","Gift-3","museum of us"],["reels","Gift-4","our reels"],["games","Gift-5","play with me"],["us","Gift-6","just us: chat & call"]];
+  const s = screen("gifts", `<div class="wrap" style="text-align:center">
+    <span class="tape">select any gift</span>
+    <div class="giftgrid">${G.map(([k,l,sub]) => `<button class="gift" data-gift="${k}"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#giftbox"/></svg><span class="lab">${l}</span><span class="sub">${sub}</span></button>`).join("")}</div>
+    <div style="margin-top:28px;display:flex;justify-content:center"><div class="meme" style="max-width:280px">${solo("m","happy","Monaal grinning")}<span class="mt">me watching you open these like it's my birthday</span></div></div>
+  </div>`);
+  s.querySelector(".giftgrid").onclick = e => { const g = e.target.closest(".gift"); if (!g) return; g.classList.add("opened"); setTimeout(() => show(g.dataset.gift), 420); };
+},
+
+/* GIFT 1 */
+letter(){
+  screen("letter", `${backBtn()}<div class="wrap cardrow">
+    <div class="doily">
+      <svg class="lace" viewBox="0 0 100 90" aria-hidden="true"><use href="#heart" fill="#fff"/><path d="M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z" fill="none" stroke="#f3c7d0" stroke-width="5" stroke-dasharray="0.1 6" stroke-linecap="round" transform="translate(5 5) scale(.9)"/></svg>
+      <div class="note"><b>Happy Proposal Day ♥</b>Today is a reminder of the day we chose each other, officially. 28 · 10</div>
+      <div class="strip"><img src="${P("lights-selfie")}" alt="us under the lights"><img src="${P("pink-selfie")}" alt="us on the stairs"><img src="${P("dandiya-selfie")}" alt="us at garba"></div>
+    </div>
+    <button class="env" data-go="letterOpen" aria-label="Open letter"><span class="eback"></span><span class="paperin"><span>OPEN LETTER</span></span><span class="front"></span><span class="seal">♥</span></button>
+  </div>`);
+},
+letterOpen(){
+  screen("letterOpen", `${backBtn("letter")}<div class="wrap letterrow">
+    <article class="stamp">
+      <p>To the girl who turns my noisy days into quiet ones, who leans on my shoulder like it was made for her, who throws her dupatta over me and laughs, who laughs at my worst jokes and still calls me hers,</p>
+      <p>Riddhi, 28 October is the day we stopped pretending we were "just" anything. The day we said it out loud, officially. And every single day since, I've only fallen deeper.</p>
+      <p>So I want you to hear this today, and every day after: <strong>I love you the most.</strong> Not a little more than yesterday. The most. More than code that runs on the first try, more than chai on a cold evening, more than anything I have ever wanted.</p>
+      <p>You are my sukoon. When my head is loud, you are the calm. When the day is long, you are the reason the night feels like home.</p>
+      <p>I promise to keep choosing you, on the dandiya nights and the boring Tuesdays, in the movie halls and on the long walks back, in every version of us that's still to come.</p>
+      <p class="sign">Forever yours,<br>Monaal</p>
+    </article>
+    <figure class="cutout" style="margin:0"><img src="${P("dupatta-smile")}" alt="you, smiling, with your dupatta on me"></figure>
+  </div>`);
+},
+
+/* GIFT 2 */
+day(){
+  screen("day", `${backBtn()}<div class="wrap dayrow">
+    <div>
+      <div class="cal" aria-label="October calendar with the 28th marked">
+        <div class="grid"></div>
+        <span class="num" style="left:10%;top:18%">21</span><span class="num" style="left:12%;top:66%">27</span>
+        <span class="num" style="left:80%;top:62%">29</span><span class="num" style="left:76%;top:10%">22</span>
+        <div class="big"><h2>The Day It Became Us</h2><span class="d">28</span>
+          <svg class="ring" viewBox="0 0 100 90" aria-hidden="true"><path d="M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z" fill="none" stroke="#fff" stroke-width="5"/></svg></div>
+      </div>
+      <p class="daynote">28 October · the day we proposed to each other, officially ♥</p>
+    </div>
+    <div class="framestack"><img src="${P("hug")}" alt="us at garba" data-zoom="${P("hug")}"><img src="${P("cinema")}" alt="us at the movies" data-zoom="${P("cinema")}"></div>
+  </div>`);
+},
+
+/* GIFT 3 */
+museum(){
+  const tilt = [-6,4,-3,6,-5,3,-4,5,-2];
+  screen("museum", `${backBtn()}<div class="wrap museum">
+    <h1>museum <b>of US</b></h1>
+    <svg class="lights" viewBox="0 0 1000 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 Q250 70 500 30 T1000 14" stroke="#e8d6b8" stroke-width="2" fill="none"/>
+      ${Array.from({ length:11 }, (_, i) => { const x = i * 100 + 20, y = 10 + Math.sin(i * .9) * 14 + 22; return `<path transform="translate(${x} ${y}) scale(.9)" d="M14 0l4.2 9.4 10.2 1-7.7 6.9 2.3 10L14 22.2 5 27.3l2.3-10L-.4 10.4l10.2-1z" fill="#F2C14E"/>`; }).join("")}</svg>
+    <div class="wall">${MUSEUM.map(([n,c], i) => `<button class="pola" style="transform:rotate(${tilt[i]}deg)" data-zoom="${P(n)}"><img src="${P(n)}" alt="${esc(c)}" loading="lazy"><span>${esc(c)}</span></button>`).join("")}</div>
+    <p class="section-title">the museum gift shop (memes)</p>
+    <div class="memes">${MEMES.map(m => `<div class="meme">${m.svg()}<span class="mt">${esc(m.t)}</span></div>`).join("")}</div>
+    <div style="text-align:center;margin-top:30px"><button class="pill" data-go="reasons">21 reasons why I love you ›</button></div>
+  </div>`);
+},
+reasons(){
+  screen("reasons", `${backBtn("museum")}<div class="wrap reasons-hero">
+    <img src="${P("hug2")}" alt="us, cuddled up at garba">
+    <div class="r21"><span class="n">21</span><span class="t">REASONS<br>WHY I<br><em>LOVE</em><br>YOU</span>
+      <div style="margin-top:20px"><button class="pill" data-go="reasonsList">open my notebook ›</button></div></div>
+  </div>`);
+},
+reasonsList(){
+  const s = screen("reasonsList", `${backBtn("reasons")}<div class="notebook"><ol id="rl"></ol>
+    <p style="margin:10px 0 0;text-align:right;font-family:var(--f-hand);font-size:24px">28 October · M ♥ R</p></div>`);
+  const ol = s.querySelector("#rl"); let i = 0;
+  const id = setInterval(() => { if (i >= REASONS.length){ clearInterval(id); return; } const li = document.createElement("li"); li.className = "new"; li.textContent = REASONS[i++]; ol.appendChild(li); }, 220);
+  cleanup = () => clearInterval(id);
+},
+
+/* GIFT 4 */
+reels(){
+  const R = [["reel1","chand mukhda"],["reel2","garba glow"],["reel3","happy anniversary"],["reel4","sept → oct"]];
+  screen("reels", `${backBtn()}<div class="wrap"><h1 class="page">our reels</h1><p class="lede">Tap one to play, sound on.</p>
+    <div class="reels">${R.map(([v,c]) => `<div class="phone"><video src="vid/${v}.mp4" poster="vid/${v}.jpg" controls playsinline preload="none"></video><p>${c}</p></div>`).join("")}</div></div>`);
+  const pause = () => { if (music.on) stopMusic(); };
+  app.querySelectorAll("video").forEach(v => v.addEventListener("play", () => { pause(); app.querySelectorAll("video").forEach(o => { if (o !== v) o.pause(); }); }));
+},
+
+/* GIFT 5 */
+games(){
+  screen("games", `${backBtn()}<div class="wrap"><h1 class="page">play with me</h1><p class="lede">Loser owes the winner a hug. Winner also owes the loser a hug. Those are the rules.</p>
+    <div class="hub">
+      <button class="gcard" data-go="memory"><span class="ic">🃏</span><h3>Memory of Us</h3><p>Match our photos. Fewer moves, more kisses.</p></button>
+      <button class="gcard" data-go="catch"><span class="ic">💘</span><h3>Catch My Hearts</h3><p>Help mini-Monaal catch every heart before it hits the ground.</p></button>
+      <button class="gcard" data-go="cards"><span class="ic">🎴</span><h3>Couple Cards</h3><p>Truths, would-you-rathers, deep questions and cute dares.</p></button>
+      <button class="gcard" data-go="wishes"><span class="ic">🫙</span><h3>Wish Jar</h3><p>Drop a wish or a promise. The other one fulfils it.</p></button>
+    </div></div>`);
+},
+memory(){
+  const deck = [...MEMORY_PICS, ...MEMORY_PICS].map((p, i) => ({ p, i })).sort(() => Math.random() - .5);
+  const s = screen("memory", `${backBtn("games")}<div class="wrap"><h1 class="page">memory of us</h1>
+    <div class="stat"><span>Moves: <b id="mv">0</b></span><span>Pairs: <b id="pr">0</b>/6</span></div>
+    <div class="mem" id="mem">${deck.map((c, k) => `<button class="mc" data-k="${k}" aria-label="card"><span class="in"><span class="f"></span><span class="b"><img src="img/m-${c.p}.jpg" alt=""></span></span></button>`).join("")}</div>
+    <div class="row" id="memWin" hidden><p style="font-family:var(--f-hand);font-size:30px;margin:0">You matched us perfectly 💞</p><button class="pill" data-go="memory">play again</button></div></div>`);
+  let open = [], moves = 0, pairs = 0, busy = false;
+  s.querySelector("#mem").onclick = e => {
+    const b = e.target.closest(".mc"); if (!b || busy || b.classList.contains("up") || b.classList.contains("done")) return;
+    b.classList.add("up"); open.push(b);
+    if (open.length === 2){
+      moves++; $("#mv").textContent = moves; busy = true;
+      const [a, c] = open, same = deck[a.dataset.k].p === deck[c.dataset.k].p;
+      setTimeout(() => {
+        if (same){ a.classList.add("done"); c.classList.add("done"); pairs++; $("#pr").textContent = pairs; if (pairs === 6){ $("#memWin").hidden = false; burst(); } }
+        else { a.classList.remove("up"); c.classList.remove("up"); }
+        open = []; busy = false;
+      }, same ? 300 : 800);
+    }
+  };
+},
+catch(){
+  const s = screen("catch", `${backBtn("games")}<div class="wrap"><h1 class="page">catch my hearts</h1>
+    <div class="stat"><span>Score: <b id="sc">0</b></span><span>Time: <b id="tm">30</b>s</span><span>Best: <b id="bs">${store.get("mr-best") || 0}</b></span></div>
+    <div class="gamebox"><canvas id="catch"></canvas>
+      <div class="overlay" id="cov"><h2>Catch My Hearts</h2><p style="margin:0;max-width:34ch">Drag (or use ← →) to move mini-Monaal. ❤ = 1, 💛 = 5. Dodge the 💔.</p><button class="pill" id="go">start</button></div></div></div>`);
+  const cv = s.querySelector("#catch"), c = cv.getContext("2d");
+  let W, H, px, items = [], score = 0, left = 30, running = false, raf = 0, last = 0, spawn = 0, tick = 0, keys = {};
+  const fit = () => { const r = cv.getBoundingClientRect(), d = Math.min(2, devicePixelRatio || 1); W = r.width; H = r.height; cv.width = W*d; cv.height = H*d; c.setTransform(d,0,0,d,0,0); if (px == null) px = W/2; };
+  fit(); addEventListener("resize", fit);
+  const heartPath = (x, y, r, col) => { c.save(); c.translate(x - r, y - r*.9); c.scale(r/50, r/50); c.fillStyle = col; c.fill(new Path2D("M50 88C20 66 0 48 0 26 0 10 12 0 26 0c11 0 19 6 24 15C55 6 63 0 74 0c14 0 26 10 26 26 0 22-20 40-50 62z")); c.restore(); };
+  const drawMochi = () => {
+    const y = H - 46; c.fillStyle = "#F2D2AE"; c.beginPath(); c.ellipse(px, y, 40, 34, 0, Math.PI, 0); c.lineTo(px+40, y+30); c.lineTo(px-40, y+30); c.fill();
+    c.fillStyle = "#2a1d1d"; c.beginPath(); c.ellipse(px, y-30, 30, 10, 0, 0, 7); c.fill();
+    c.strokeStyle = "#1b1b1b"; c.lineWidth = 3; c.strokeRect(px-22, y-12, 16, 13); c.strokeRect(px+6, y-12, 16, 13); c.beginPath(); c.moveTo(px-6, y-7); c.lineTo(px+6, y-7); c.stroke();
+    c.fillStyle = "#3a1a1a"; c.beginPath(); c.arc(px-14, y-5, 2.4, 0, 7); c.arc(px+14, y-5, 2.4, 0, 7); c.fill();
+    c.strokeStyle = "#3a1a1a"; c.lineWidth = 2.4; c.beginPath(); c.arc(px, y+8, 6, .2, Math.PI-.2); c.stroke();
+  };
+  function loop(t){
+    const dt = Math.min(50, t - last); last = t;
+    if (keys.ArrowLeft) px -= dt * .5; if (keys.ArrowRight) px += dt * .5; px = Math.max(40, Math.min(W-40, px));
+    spawn -= dt; if (spawn <= 0){ const r = Math.random(); items.push({ x:30 + Math.random()*(W-60), y:-20, v:.12 + Math.random()*.12 + (30-left)*.004, k: r < .12 ? "gold" : r < .3 ? "broken" : "red" }); spawn = 520 - (30-left)*8; }
+    tick += dt; if (tick >= 1000){ tick -= 1000; left--; $("#tm").textContent = left; if (left <= 0) return end(); }
+    c.clearRect(0,0,W,H);
+    for (const it of items){ it.y += it.v * dt;
+      if (it.k === "red") heartPath(it.x, it.y, 16, "#ff4d6d"); else if (it.k === "gold") heartPath(it.x, it.y, 18, "#ffd23f");
+      else { heartPath(it.x, it.y, 16, "#7a6b8a"); c.strokeStyle = "#2a1450"; c.lineWidth = 3; c.beginPath(); c.moveTo(it.x, it.y-14); c.lineTo(it.x-5, it.y-4); c.lineTo(it.x+4, it.y+2); c.lineTo(it.x, it.y+10); c.stroke(); }
+      if (it.y > H - 80 && it.y < H - 40 && Math.abs(it.x - px) < 44){ it.hit = true; score = Math.max(0, score + (it.k === "gold" ? 5 : it.k === "broken" ? -3 : 1)); $("#sc").textContent = score; }
+    }
+    items = items.filter(i => !i.hit && i.y < H + 30);
+    drawMochi();
+    raf = requestAnimationFrame(loop);
+  }
+  function end(){
+    running = false; const best = Math.max(score, +(store.get("mr-best") || 0)); store.set("mr-best", best); $("#bs").textContent = best;
+    const o = $("#cov"); o.hidden = false; o.innerHTML = `<h2>${score} hearts! ${score >= 25 ? "😍" : "🥰"}</h2><p style="margin:0">${score >= 25 ? "You caught my heart. Again." : "Every one you missed, I'll hand-deliver."}</p><button class="pill" id="go">play again</button>`;
+    o.querySelector("#go").onclick = start;
+  }
+  function start(){ items = []; score = 0; left = 30; tick = 0; $("#sc").textContent = 0; $("#tm").textContent = 30; $("#cov").hidden = true; running = true; last = performance.now(); raf = requestAnimationFrame(loop); }
+  s.querySelector("#go").onclick = start;
+  const mv = e => { const r = cv.getBoundingClientRect(); px = e.clientX - r.left; };
+  cv.addEventListener("pointermove", mv); cv.addEventListener("pointerdown", mv);
+  const kd = e => { if (e.key === "ArrowLeft" || e.key === "ArrowRight"){ keys[e.key] = e.type === "keydown"; if (running) e.preventDefault(); } };
+  addEventListener("keydown", kd); addEventListener("keyup", kd);
+  cleanup = () => { cancelAnimationFrame(raf); removeEventListener("resize", fit); removeEventListener("keydown", kd); removeEventListener("keyup", kd); };
+},
+cards(){
+  let order = CARDS.map((_, i) => i).sort(() => Math.random() - .5), pos = 0;
+  const s = screen("cards", `${backBtn("games")}<div class="wrap"><h1 class="page">couple cards</h1><p class="lede">Tap the card to flip. Take turns answering out loud (or in the chat).</p>
+    <div class="deck"><button class="qcard" id="qc" aria-label="flip card"><span class="in"><span class="f"><span>M ♥ R</span></span><span class="b"><small id="qt"></small><p id="qq"></p></span></span></button></div>
+    <div class="row"><button class="pill" id="nx">next card ›</button></div></div>`);
+  const fill = () => { const [t, q] = CARDS[order[pos % order.length]]; $("#qt").textContent = t; $("#qq").textContent = q; };
+  fill();
+  s.querySelector("#qc").onclick = () => s.querySelector("#qc").classList.toggle("flip");
+  s.querySelector("#nx").onclick = () => { const q = s.querySelector("#qc"); q.classList.remove("flip"); setTimeout(() => { pos++; fill(); q.classList.add("flip"); }, 350); };
+},
+wishes(){
+  screen("wishes", `${backBtn("games")}<div class="wrap"><h1 class="page">the wish jar</h1><p class="lede">Drop a wish, a date idea or a promise. When the other one makes it come true, tick it as fulfilled.</p>
+    <div class="jarrow">
+      <div class="jar" id="jar"></div>
+      <div>
+        <div class="form" id="wform">
+          <div class="who" id="whoW"></div>
+          <select id="wk" aria-label="type"><option>💭 a wish</option><option>📅 a date idea</option><option>🤞 a promise</option></select>
+          <textarea id="wt" rows="2" maxlength="240" placeholder="e.g. a sunrise walk together, just us"></textarea>
+          <button class="pill red" id="wadd" style="justify-self:start">drop it in the jar</button>
+        </div>
+        <div id="wnote"></div>
+        <div class="wishes" id="wl"></div>
+      </div></div></div>`);
+  renderWho("#whoW"); renderWishes();
+  $("#wadd").onclick = async () => {
+    const t = $("#wt").value.trim(); if (!t) return;
+    if (!caps.db) return;
+    if (!me){ $("#wnote").innerHTML = `<p class="notice">Tap who you are first ↑</p>`; return; }
+    $("#wadd").disabled = true;
+    try { await caps.db.collection("wishes").add({ text:t.slice(0,240), kind:$("#wk").value, from:me, ts:Date.now(), done:false }); $("#wt").value = ""; $("#wnote").innerHTML = ""; }
+    catch(e){ $("#wnote").innerHTML = `<p class="notice">Couldn't save that one. Make sure you can edit this page, then try again.</p>`; }
+    $("#wadd").disabled = false;
+  };
+},
+
+/* GIFT 6 */
+us(){ renderUs(); }
+};
+
+function renderWho(sel){
+  const el = $(sel); if (!el) return;
+  el.innerHTML = `<span style="font-size:14px;align-self:center">I am:</span>` + ["Monaal","Riddhi"].map(n => `<button aria-pressed="${me === n}" data-me="${n}">${n}</button>`).join("");
+  el.onclick = e => { const b = e.target.closest("[data-me]"); if (!b) return; me = b.dataset.me; store.set("mr-who", me); if (caps.room) caps.room.presence({ me }).catch(() => {}); renderWho(sel); renderChatMsgs(); renderWishes(); renderOnline(); };
+}
+function renderWishes(){
+  const jar = $("#jar"), wl = $("#wl"); if (!wl) return;
+  const done = wishDocs.filter(w => w.done).length, total = wishDocs.length;
+  const fillPct = total ? Math.min(1, total / 12) : 0, h = 150 * fillPct;
+  jar.innerHTML = `<svg viewBox="0 0 200 240" role="img" aria-label="wish jar with ${total} wishes, ${done} fulfilled">
+    <rect x="62" y="14" width="76" height="22" rx="6" fill="#d9a33a"/><path d="M50 40 h100 q14 0 14 18 v150 q0 22 -22 22 h-84 q-22 0 -22 -22 v-150 q0 -18 14 -18Z" fill="rgba(255,255,255,.18)" stroke="#fff" stroke-width="3"/>
+    <clipPath id="jc"><path d="M50 40 h100 q14 0 14 18 v150 q0 22 -22 22 h-84 q-22 0 -22 -22 v-150 q0 -18 14 -18Z"/></clipPath>
+    <g clip-path="url(#jc)">${Array.from({ length:Math.min(total, 24) }, (_, i) => `<use href="#heart" x="${46 + (i*37)%110}" y="${212 - Math.floor(i/4)*24 - (i%2)*6}" width="22" height="20" fill="${wishDocs[i] && wishDocs[i].done ? "#F2C14E" : "#ff6b81"}"/>`).join("")}</g>
+    <text x="100" y="238" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="15" fill="#fff">${total} wishes · ${done} fulfilled</text></svg>`;
+  if (!caps.db){ wl.innerHTML = STANDALONE ? `<p class="notice">The wish jar isn't connected yet: add your Firebase keys to config.js (see the README).</p>` : `<p class="notice">The wish jar saves to this page, so it needs you to be signed in with access to it. Open it from the shared link while signed in.</p>`; return; }
+  if (!total){ wl.innerHTML = `<p class="notice">The jar is empty. Drop the first wish in ↑</p>`; return; }
+  wl.innerHTML = wishDocs.map(w => `<div class="wish ${w.done ? "done" : ""}"><div><p>${esc(w.kind || "")} ${esc(w.text)}</p><small>from ${esc(w.from || "?")}${w.done ? ` · fulfilled by ${esc(w.doneBy || "?")} ✨` : ""}</small></div><button class="tick" data-wid="${esc(w.id)}">${w.done ? "fulfilled ✓" : "fulfil"}</button></div>`).join("");
+  wl.onclick = async e => { const b = e.target.closest("[data-wid]"); if (!b) return; const w = wishDocs.find(x => x.id === b.dataset.wid); if (!w) return;
+    try { await caps.db.doc("wishes/" + w.id).update({ done:!w.done, doneBy:me || "someone", doneAt:Date.now() }); if (!w.done) burst(); } catch(err){} };
+}
+
+function renderUs(){
+  if (cur !== "us") return;
+  app.innerHTML = "";
+  const s = screen("us", `${backBtn()}<div class="wrap"><h1 class="page">just us</h1><p class="lede">Our own little chat, and a private video room for when we're apart.</p>
+    <div class="us">
+      <div class="chat">
+        <div class="chathead"><b>M ♥ R</b><span class="online" id="onl"><i></i><span>…</span></span><div class="who" id="whoC"></div></div>
+        <div class="msgs" id="msgs" aria-live="polite"></div>
+        <div class="quick" id="quick">${["🫂 sending a hug","😘","🥺 miss you","❤️","you're cute","good night jaan 🌙"].map(q => `<button>${q}</button>`).join("")}</div>
+        <form class="send" id="sendf"><input id="mt" maxlength="500" autocomplete="off" placeholder="type something sweet…" aria-label="message"><button>send</button></form>
+      </div>
+      <div style="display:grid;gap:16px">
+        <div class="callcard">${duo("love")}<h3>Video call</h3>
+          <p>Opens our private room in a new tab. You both join the same room name and you're face to face.</p>
+          ${STANDALONE ? `<button class="pill red" id="callHere">start our call here 📹</button>` : ""}
+          <a class="pill ${STANDALONE ? "small" : "red"}" href="https://meet.jit.si/${CALL_ROOM}" target="_blank" rel="noopener">${STANDALONE ? "open in a new tab" : "start our call 📹"}</a>
+          <span class="roomname">${CALL_ROOM}</span>
+        </div>
+        <div class="callcard"><h3>Watch together</h3><p>Movie night from two cities: make a room on Kosmi and send me the link in our chat.</p>
+          <a class="pill" href="https://app.kosmi.io/" target="_blank" rel="noopener">open Kosmi 🍿</a></div>
+        <div class="callcard" id="songbox" hidden></div>
+      </div>
+    </div></div>`);
+  renderWho("#whoC"); renderChatMsgs(); renderOnline(); renderSongBox();
+  const ch = s.querySelector("#callHere");
+  if (ch) ch.onclick = () => { if (music.on) stopMusic(); ch.closest(".callcard").insertAdjacentHTML("afterend", `<div class="callframe"><iframe src="https://meet.jit.si/${CALL_ROOM}" allow="camera; microphone; fullscreen; display-capture; autoplay" title="our video call"></iframe></div>`); ch.remove(); };
+  s.querySelector("#sendf").onsubmit = e => { e.preventDefault(); sendMsg($("#mt").value); };
+  s.querySelector("#quick").onclick = e => { const b = e.target.closest("button"); if (b) sendMsg(b.textContent); };
+}
+async function sendMsg(text){
+  text = (text || "").trim(); if (!text) return;
+  if (!caps.db) return;
+  if (!me){ const m = $("#msgs"); if (m) m.insertAdjacentHTML("beforeend", `<p class="notice">Tap who you are (Monaal or Riddhi) up top first 💕</p>`); return; }
+  $("#mt").value = "";
+  try { await caps.db.collection("chat").add({ from:me, text:text.slice(0,500), ts:Date.now() }); }
+  catch(e){ const m = $("#msgs"); if (m) m.insertAdjacentHTML("beforeend", `<p class="notice">That didn't send. You need edit access to this page to chat.</p>`); }
+}
+function renderChatMsgs(){
+  const m = $("#msgs"); if (!m) return;
+  if (!caps.db){ m.innerHTML = STANDALONE ? `<p class="notice">Chat isn't connected yet: add your Firebase keys to config.js (see the README).</p>` : `<p class="notice">Chat saves to this page, so it works once you're both signed in and have edit access to it. If you just opened it, give it a second…</p>`; return; }
+  if (!chatDocs.length){ m.innerHTML = `<p class="notice">No messages yet. Say hi to your favourite person 💌</p>`; return; }
+  const near = m.scrollHeight - m.scrollTop - m.clientHeight < 80;
+  m.innerHTML = chatDocs.map(d => { const mine = d.from === me, emojiOnly = /^\p{Extended_Pictographic}+$/u.test((d.text || "").replace(/\s|️/g, "")) && (d.text || "").length <= 8;
+    const time = d.ts ? new Date(d.ts).toLocaleString([], { day:"numeric", month:"short", hour:"2-digit", minute:"2-digit" }) : "";
+    return `<div class="msg ${mine ? "mine" : "theirs"} ${emojiOnly ? "big" : ""}">${esc(d.text)}${emojiOnly ? "" : `<small>${esc(d.from || "")} · ${time}</small>`}</div>`; }).join("");
+  if (near || chatDocs.length < 30) m.scrollTop = m.scrollHeight;
+}
+function renderOnline(){
+  const el = $("#onl"); if (!el) return;
+  const other = me === "Monaal" ? "Riddhi" : me === "Riddhi" ? "Monaal" : null;
+  const here = other && peers.some(p => p.presence && p.presence.me === other);
+  el.classList.toggle("on", !!here);
+  el.querySelector("span").textContent = !caps.room ? "" : !other ? "pick who you are" : here ? `${other} is here 💗` : `${other} isn't on the page`;
+}
+function renderSongBox(){
+  const box = $("#songbox"); if (!box) return;
+  const canEdit = caps.user && caps.user.canEdit && caps.user.canEdit();
+  if (!caps.db || !caps.assets || !canEdit){ box.hidden = true; return; }
+  box.hidden = false;
+  box.innerHTML = `<h3>Our song</h3><p>${songUrl ? "Your song is set. The ♪ button and the film play it." : "Add the Hindi song you love as an .mp4 (a video of the song works). Until then the ♪ button plays a soft piano tune I wrote for you two."}</p>
+    <label class="pill small" style="cursor:pointer">${songUrl ? "change song" : "upload song"}<input type="file" id="songf" accept="video/mp4,audio/*" hidden></label><span id="songmsg" style="font-size:13px"></span>`;
+  box.querySelector("#songf").onchange = async e => {
+    const f = e.target.files[0]; if (!f) return; const msg = $("#songmsg"); msg.textContent = "uploading…";
+    try { const r = await caps.assets.upload(f); await caps.db.doc("settings/song").set({ assetId:r.id, name:f.name.slice(0,80), ts:Date.now() }); msg.textContent = "saved ♥"; if (music.on){ stopMusic(); startMusic(); } }
+    catch(err){ msg.textContent = err && err.code === "unsupported_type" ? "That file type isn't accepted. Save the song as an .mp4 and try again." : "Upload didn't work, try again."; }
+  };
+}
+
+function burst(){
+  for (let i = 0; i < 22; i++){ const h = document.createElement("span"); h.className = "floaty"; h.textContent = ["❤️","💖","💕","💗","✨"][i % 5]; h.style.left = Math.random()*100 + "vw"; h.style.animationDelay = Math.random()*.6 + "s"; document.body.appendChild(h); setTimeout(() => h.remove(), 4200); }
+}
+
+show(unlocked ? "gifts" : "lock");
+capsReady();
+})();
+</script>
+
+</body>
+</html>
